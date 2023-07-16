@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
+import css from './ImageGalleryItem.module.css'
 
 const ImageGalleryItem = ({ url, tags, openModal, largeImageURL }) => {
     return (
-        <li>
+        <li className={css.ImageGalleryItem}>
             <img
+                className={css.ImageGalleryItemImage}
                 src={url}
                 alt={tags}
                 onClick={() => openModal(largeImageURL, tags)}

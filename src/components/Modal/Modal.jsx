@@ -1,12 +1,13 @@
 import { Component } from "react";
 import PropTypes from 'prop-types';
+import css from './Modal.module.css';
 
-export class Modal extends Component {
+class Modal extends Component {
     componentDidMount() {
         window.addEventListener('keydown', this.onKeyDown)
     }
     onKeyDown = e => {
-        if(e.code === 'escape') {
+        if(e.code === 'Escape') {
             this.props.onModalClick();
         }
     }
@@ -26,8 +27,8 @@ render() {
     const { largeImageURL, alt } = this.props;
 
     return(
-        <div className="overlay" onClick={this.onBackDroClick}>
-            <div className="modal">
+        <div className={css.Overlay} onClick={this.onBackDroClick}>
+            <div className={css.Modal}>
                 <img src={largeImageURL} alt={alt} />
             </div>
         </div>
@@ -39,3 +40,4 @@ Modal.propTypes = {
     largeImageURL: PropTypes.string.isRequired,
     onModalClick: PropTypes.func.isRequired,
 }
+export default Modal

@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
+import css from './Button.module.css'
 
 function Button ({ onClick }) {
     return (
-        <>
-            <button type='button' onClick={onClick}>
+        <div className={css.ButtonConatainer}>
+            <button className={css.Button} type='button' onClick={onClick}>
                 Load more
             </button>
-        </>
+        </div>
     )
 }
 Button.propTypes = {

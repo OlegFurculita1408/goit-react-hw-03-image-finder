@@ -4,7 +4,10 @@ import SearchBar from './Searchbar/Searchbar';
 import ImageGallery from './ImageGallery/ImageGallery';
 import Button from './Button/Button';
 import Loader from './Loader/Loader';
-import { Modal } from './Modal/Modal';
+import Modal from './Modal/Modal';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export class App extends Component  {
   state = {
@@ -37,7 +40,7 @@ export class App extends Component  {
       const { hits, totalHits } = await getAllImages(searchQuery, page);
 
         if (totalHits === 0) {
-          console.log('Sory, no images')
+          toast.warning(`Sory, no images!`, {position: toast.POSITION.TOP_LEFT});
         }
 
       const newImages = necessaryValues(hits);
@@ -48,7 +51,7 @@ export class App extends Component  {
       
      } catch (error) {
         this.setState({ error })
-          console.log({error})
+          toast.error({error})
 
      } finally {
         this.setState({ isLoading: false})
@@ -90,6 +93,7 @@ render() {
        images={images}
        onOpenModal={this.openModal}
         />
+      <ToastContainer />
       {isLoading && <Loader />}
       {images.length !== 0 && !isLoading && !allImages && (
         <Button onClick={this.onLoadMore} />)}
